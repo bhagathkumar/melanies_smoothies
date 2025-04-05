@@ -34,7 +34,7 @@ if ingredient_list:
         else:
             st.write("The Search value for " + fruit + " is not found.")
             search_on = fruit
-        st.stop()
+        
 
         
 
