@@ -31,6 +31,7 @@ if ingredient_list:
         if search_on == '':
             search_on = fruit
         st.write("The Search value for " + fruit + " is " + search_on + ".")
+        st.stop()
         
 
         st.subheader(fruit + 'Nutrition Information')
