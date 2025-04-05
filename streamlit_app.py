@@ -15,8 +15,8 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT
 
 #Convert Snowpark to pandas
 pd_df = my_dataframe.to_pandas()
-st.dataframe(data=pd_df, use_container_width=True)
-st.stop()
+#st.dataframe(data=pd_df, use_container_width=True)
+#st.stop()
 
 name_on_order= st.text_input("Name on the smoothie")
 st.write(name_on_order)
@@ -26,6 +26,10 @@ if ingredient_list:
     ingredient_str = ''
     for fruit in ingredient_list:
         ingredient_str += fruit + ' '
+
+        search_on = pd_df.loc[pd_df['FRUIT_NAME'] == fruit,'SEARCH_ON'].iloc[0]
+        st.write("The Search value for " + fruit + " is " + search_on)
+
         st.subheader(fruit + 'Nutrition Information')
         smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+fruit)
         sf_df=st.dataframe(data=smoothiefroot_response.json(),use_container_width=True)
